@@ -1,0 +1,12 @@
+{
+  "name": "projet-9",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "back",
+    "front"
+  ],
+  "scripts": {
+    "dev": "pnpm -F \"*\" dev"
+  }
+}
