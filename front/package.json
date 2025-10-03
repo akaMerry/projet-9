@@ -5,7 +5,8 @@
   "author": "techer jean sebastien <techerjeansebastien.pro@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --coverage --noStackTrace --silent",
+    "test:silent": "jest --coverage --noStackTrace --silent",
+    "test": "jest --coverage",
     "dev": "vite"
   },
   "jest": {
