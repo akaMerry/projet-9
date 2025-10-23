@@ -148,9 +148,6 @@ describe("Given I am connected as an employee", () => {
       await waitFor(() =>
         expect(onNavigate).toHaveBeenCalledWith(ROUTES_PATH["Bills"])
       );
-    });
-
-    test("Then it should render Bills page", () => {
       expect(screen.getByText("Mes notes de frais")).toBeTruthy();
     });
   });
