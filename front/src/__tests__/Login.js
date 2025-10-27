@@ -49,6 +49,7 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
+  // ajout
   describe("When I do fill fields in correct format and I click on employee button Login In", () => {
     test("Then I should be identified as an Employee in app", async () => {
       document.body.innerHTML = LoginUI();
@@ -58,6 +59,7 @@ describe("Given that I am a user on login page", () => {
         password: "azerty",
       };
 
+      // localStorage should be populated with form data
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,
       });
@@ -73,6 +75,7 @@ describe("Given that I am a user on login page", () => {
 
       const setItemSpy = jest.spyOn(window.localStorage, "setItem");
 
+      // we have to mock navigation to test it
       const onNavigate = jest.fn((pathname) => {
         document.body.innerHTML = ROUTES({ pathname, data: [] });
       });
@@ -169,6 +172,7 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
+  // ajout
   describe("When I do fill fields in correct format and I click on admin button Login In", () => {
     test("Then I should be identified as an HR admin in app", async () => {
       document.body.innerHTML = LoginUI();
@@ -180,6 +184,7 @@ describe("Given that I am a user on login page", () => {
         status: "connected",
       };
 
+      // localStorage should be populated with form data
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,
       });
@@ -195,6 +200,7 @@ describe("Given that I am a user on login page", () => {
 
       const setItemSpy = jest.spyOn(window.localStorage, "setItem");
 
+      // we have to mock navigation to test it
       const onNavigate = jest.fn((pathname) => {
         document.body.innerHTML = ROUTES({ pathname, data: [] });
       });

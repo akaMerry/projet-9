@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { screen, waitFor, fireEvent, toBeOneOf } from "@testing-library/dom";
+import { screen, waitFor, fireEvent, toMatch } from "@testing-library/dom";
 import BillsUI from "../views/BillsUI.js";
 import { bills } from "../fixtures/bills.js";
 import Bills from "../containers/Bills";
@@ -123,6 +123,7 @@ describe("Given I am connected as an employee", () => {
 
         expect(handleNewBill).toHaveBeenCalled();
         expect(onNavigate).toHaveBeenCalledWith(ROUTES_PATH.NewBill);
+        expect(screen.getByText("Envoyer une note de frais")).toBeTruthy();
       });
     });
     describe("When bills are retreived", () => {
@@ -136,7 +137,7 @@ describe("Given I am connected as an employee", () => {
         );
       });
 
-      test("Bills should return formatted", async () => {
+      test("Then bills should return formatted", async () => {
         document.body.innerHTML = BillsUI({ data: bills });
 
         const onNavigate = jest.fn((pathname) => {
@@ -156,11 +157,11 @@ describe("Given I am connected as an employee", () => {
 
         fetchBills.forEach((bill) => {
           expect(["En attente", "Accepté", "Refusé"]).toContain(bill.status);
-          expect(bill.date).toContain(".");
+          expect(bill.date).toMatch(new RegExp(/[a-zA-Z]+/g));
         });
       });
 
-      test("Function should handle corrupted data and still return bills", async () => {
+      test("Then function should handle corrupted data and still return bills", async () => {
         const corruptedData = [
           { id: "bad", date: "not-a-date", status: "pending" },
         ];
@@ -199,7 +200,7 @@ describe("Given I am connected as an employee", () => {
         formatSpy.mockRestore();
       });
 
-      test("Function should return undefined when store is not provided", () => {
+      test("Then function should return undefined when store is not provided", () => {
         document.body.innerHTML = BillsUI({ data: bills });
 
         const onNavigate = jest.fn((pathname) => {
@@ -221,7 +222,7 @@ describe("Given I am connected as an employee", () => {
 });
 
 describe("When I navigate to Bills page", () => {
-  test("Fetches bills from mock API GET", async () => {
+  test("Then it fetches bills from mock API GET", async () => {
     localStorage.setItem(
       "user",
       JSON.stringify({ type: "Employee", email: "a@a" })
@@ -251,7 +252,7 @@ describe("When I navigate to Bills page", () => {
       document.body.appendChild(root);
       router();
     });
-    test("Fetches bills from an API and fails with 404 message error", async () => {
+    test("Then it fetches bills from an API and fails with 404 message error", async () => {
       mockStore.bills.mockImplementationOnce(() => {
         return {
           list: () => {
@@ -265,7 +266,7 @@ describe("When I navigate to Bills page", () => {
       expect(message).toBeTruthy();
     });
 
-    test("Fetches messages from an API and fails with 500 message error", async () => {
+    test("Then it fetches messages from an API and fails with 500 message error", async () => {
       mockStore.bills.mockImplementationOnce(() => {
         return {
           list: () => {

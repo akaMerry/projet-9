@@ -13,7 +13,7 @@ import mockStore from "../__mocks__/store";
 import { bills } from "../fixtures/bills";
 import router from "../app/Router";
 
-// debug
+// modification
 // correction du chemin
 jest.mock("../app/Store", () => mockStore);
 

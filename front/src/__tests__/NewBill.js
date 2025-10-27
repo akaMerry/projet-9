@@ -84,7 +84,7 @@ describe("Given I am connected as an employee", () => {
   });
 
   describe("When I submit a valid new bill", () => {
-    test("Then it should update bill list and navigate to Bills page", async () => {
+    test("Then I should navigate to Bills page", async () => {
       const onNavigate = jest.fn((pathname) => {
         document.body.innerHTML = ROUTES({ pathname, data: [] });
       });
